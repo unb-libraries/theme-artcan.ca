@@ -151,6 +151,9 @@ input[type="text"] {
 
 @media screen and (max-width: 767px) {
 
+.tagline {
+display:none;
+}
 
   #header_top {
     position: relative;
