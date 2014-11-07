@@ -40,3 +40,38 @@
 .page-slideshow-admin td.views-field.views-field-edit-node {
   padding: 0 10px;
 }
+
+.page-slideshow-admin td.views-field.views-field-field-slideshowtags {
+  width: 100px;
+}
+
+.page-slideshow-admin td.views-field.views-field-field-slideshow-image {
+  width: 180px;
+}
+
+/*Dropdown Menu*/
+
+/************* NOTE: CHANGE ABS POSITIONING IN TAGLINE TO TOP: 50PX; *******************/
+
+
+/*
+#header_top #menu a {
+  padding: 3px 3px 0;
+}
+
+#header_top #menu a:hover, #header_top #menu li.active a {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+#header_top a.language-link:hover {
+  border: none;
+  padding: 0;
+}
+
+#header_top a.language-link {
+  padding: 0;
+}
+
+*/
