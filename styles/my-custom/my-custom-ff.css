@@ -1,7 +1,7 @@
 /**
  * @file
  * This file can host your custom FontFolio CSS.
- * 
+ *
  * Rename this file by removing ".txt" extension from file name's end.
  * Leaving only the ".css" extension.
  *
@@ -9,6 +9,25 @@
  *   "my-custom-ff.css.txt"
  * into:
  *   "my-custom-ff.css"
- * 
+ *
  */
 
+/* Slideshow Admin Styles*/
+
+.page-slideshow-admin h1 {
+  font-size: 30px;
+  padding-left: 0;
+}
+
+.page-slideshow-admin .views-table {
+  width: 100%;
+  text-align: center;
+}
+
+.page-slideshow-admin .views-table th {
+  text-align: center;
+}
+
+.page-slideshow-admin .views-exposed-form {
+  margin-bottom: 40px;
+}
