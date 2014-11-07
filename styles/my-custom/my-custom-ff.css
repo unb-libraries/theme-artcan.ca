@@ -32,3 +32,11 @@
 .page-slideshow-admin .views-exposed-form {
   margin-bottom: 40px;
 }
+
+.page-slideshow-admin td.views-field.views-field-title {
+  width: 300px;
+}
+
+.page-slideshow-admin td.views-field.views-field-edit-node {
+  padding: 0 10px;
+}
