@@ -14,7 +14,7 @@
 
 /* Slideshow Admin Styles*/
 
-.page-slideshow-admin h1 {
+.page-slideshow-admin h1#page-title {
   font-size: 30px;
   padding-left: 0;
 }
@@ -26,6 +26,7 @@
 
 .page-slideshow-admin .views-table th {
   text-align: center;
+  padding-right: 0px;
 }
 
 .page-slideshow-admin .views-exposed-form {
