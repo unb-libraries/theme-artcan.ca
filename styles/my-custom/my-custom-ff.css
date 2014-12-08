@@ -49,6 +49,16 @@
   width: 180px;
 }
 
+table.resources td, table.resources th {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table.resources {
+  margin-top: 20px;
+}
+
 /*Dropdown Menu*/
 
 /************* NOTE: CHANGE ABS POSITIONING IN TAGLINE TO TOP: 50PX; *******************/
