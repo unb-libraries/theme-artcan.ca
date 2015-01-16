@@ -141,3 +141,12 @@ table.resources {
   top: 101px;
   right: 0;
 }
+
+@media (max-width: 767px) {
+  #main_container #header_top nav.menu_cont ul li a:hover {
+    color: #ED1C24;
+  }
+  #main_container #header_top nav.menu_cont ul li a {
+    color: #000;
+  }
+}
