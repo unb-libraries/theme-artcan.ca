@@ -9,6 +9,7 @@ stylesheets[all][] = styles/fontfolio-md-queries.css
 stylesheets[all][] = styles/my-custom/my-custom-ff-md-queries.css
 
 scripts[] = js/fontfolio.js
+scripts[] = js/custom.js
 
 regions[search]    = Search
 regions[help]      = Help
