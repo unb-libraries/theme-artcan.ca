@@ -95,7 +95,6 @@ table.resources {
 #header_top #main-menu li ul li {
   width: 250px;
   margin-right: 0;
-  padding: 5px;
 }
 
 #header_top #main-menu li ul {
@@ -105,7 +104,7 @@ table.resources {
 }
 
 #header_top #main-menu li ul li a {
-  padding: 5px;
+  padding: 10px;
   color: #FFF;
 }
 
