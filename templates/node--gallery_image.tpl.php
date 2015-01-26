@@ -105,6 +105,7 @@
             <?php
               $first_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_first_name[$content['field_artist']['#language']][0]['value'];
               $last_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_last_name[$content['field_artist']['#language']][0]['value'];
+              $tid = $content['field_artist']['#items'][0]['taxonomy_term']->tid;
             ?>
             <?php print $first_name . " " . $last_name; ?>
           </p>
@@ -146,7 +147,7 @@
       $bio = $content['field_artist']['#items'][0]['taxonomy_term']->field_bio[$content['field_artist']['#language']][0]['value'];
       if ($bio):
     ?>
-    <p class=bio-link>(<a href="biographies/#<?php print $first_name . $last_name; ?>"><?php print t('Biography of'); ?> <?php print $first_name . " " . $last_name; ?></a>)</p>
+    <p class=bio-link>(<a href="biographies/#<?php print $tid; ?>"><?php print t('Biography of'); ?> <?php print $first_name . " " . $last_name; ?></a>)</p>
     <?php endif; ?>
     <?php
       // We hide the comments and links now so that we can render them later.
