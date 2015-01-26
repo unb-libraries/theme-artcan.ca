@@ -232,6 +232,10 @@ table.resources {
 
 /*Biographies*/
 
-.page-node-191 .view-artist-link-list, .page-node-191 .view-artist-bios p, .page-node-191 .view-artist-bios a {
+.page-node-191 .view-artist-link-list, .page-node-191 .view-artist-bios p, .page-node-191 .view-artist-bios a, .page-node-193 .view-artist-link-list, .page-node-193 .view-artist-bios p, .page-node-193 .view-artist-bios a {
   font-size: 16px;
+}
+
+.page-node-191 .view-artist-link-list .views-row, .page-node-193 .view-artist-link-list .views-row {
+  margin-bottom: 5px;
 }
