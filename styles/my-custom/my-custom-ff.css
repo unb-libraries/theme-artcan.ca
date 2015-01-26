@@ -153,13 +153,13 @@ table.resources {
 
 /*Gallery*/
 
-.view-beaverbrook-gallery .item-list ul li.views-row {
+.view-beaverbrook-gallery .item-list ul li.views-row, .view-beaverbrook-gallery-french .item-list ul li.views-row {
   display: inline-block;
   margin: 5px 5px 5px 0;
   vertical-align: top;
 }
 
-.view-beaverbrook-gallery .item-list ul li.views-row a {
+.view-beaverbrook-gallery .item-list ul li.views-row a, .view-beaverbrook-gallery-french .item-list ul li.views-row a {
   border: 1px solid #ccc;
   padding: 10px;
   width: 150px;
@@ -168,63 +168,70 @@ table.resources {
   text-decoration: none;
 }
 
-.view-beaverbrook-gallery .item-list ul li.views-row a:hover {
+.view-beaverbrook-gallery .item-list ul li.views-row a:hover, .view-beaverbrook-gallery-french .item-list ul li.views-row a:hover {
   background: #fff;
   color: #000;
 }
 
-.view-beaverbrook-gallery {
+.view-beaverbrook-gallery, .view-beaverbrook-gallery-french {
   background: #F0F0F0;
   padding: 20px;
 }
 
-.view-beaverbrook-gallery .views-field.views-field-field-bag-image img {
+.view-beaverbrook-gallery .views-field.views-field-field-bag-image img, .view-beaverbrook-gallery-french .views-field.views-field-field-bag-image img {
   display: block;
   margin: 0 auto 10px;
 }
 
-.view-beaverbrook-gallery .view-filters #edit-combine-wrapper {
+.view-beaverbrook-gallery .view-filters #edit-combine-wrapper, .view-beaverbrook-gallery-french .view-filters #edit-combine-wrapper {
   width: 100%;
 }
 
-.view-beaverbrook-gallery .view-filters .form-submit {
+.view-beaverbrook-gallery .view-filters .form-submit, .view-beaverbrook-gallery-french .view-filters .form-submit {
   margin-top: 0;
 }
 
-.view-beaverbrook-gallery .view-filters label[for="edit-combine"] {
+.view-beaverbrook-gallery .view-filters label[for="edit-combine"], .view-beaverbrook-gallery-french .view-filters label[for="edit-combine"] {
   margin-bottom: 6px;
 }
 
 /*Gallery Item View*/
 
-.node-type-beaverbrook-gallery-image h1 {
+.node-type-gallery-image h1 {
   position: absolute;
   left: -99999px;
 }
 
-.node-type-beaverbrook-gallery-image .field-name-field-bag-image img {
+.node-type-gallery-image .field-name-field-bag-image img {
   float: left;
-  margin: 0 30px 30px 0;
+  margin-bottom: 30px;
 }
 
-.node-type-beaverbrook-gallery-image .field-label, .field-items, .field-item {
+.node-type-gallery-image .field-label, .field-items, .field-item {
   display: inline;
 }
 
-.node-type-beaverbrook-gallery-image article .content, .node-type-beaverbrook-gallery-image article .content p, .node-type-beaverbrook-gallery-image article .content .field-label {
+.node-type-gallery-image article .content, .node-type-gallery-image article .content p, .node-type-gallery-image article .content .field-label {
   font-size: 22px;
   line-height: 30px;
   font-weight: normal;
 }
 
-.node-type-beaverbrook-gallery-image article .content {
+.node-type-gallery-image article .content {
   padding-top: 30px;
 }
 
-.node-type-beaverbrook-gallery-image .field-type-text {
+.node-type-gallery-image .field-type-text, .node-type-gallery-image .field-type-taxonomy-term-reference, .node-type-gallery-image .field-type-text-long, .node-type-gallery-image .bio-link {
   margin-bottom: 14px;
+  margin-left: 580px;
 }
 
-.node-type-beaverbrook-gallery-image .field-name-field-artwork-title {
+.node-type-gallery-image .field-name-field-artwork-title {
   font-style: italic;
+}
+
+/*Biographies*/
+
+.page-node-191 .view-artist-link-list, .page-node-191 .view-artist-bios p, .page-node-191 .view-artist-bios a {
+  font-size: 16px;
 }
