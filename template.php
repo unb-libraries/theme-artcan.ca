@@ -28,14 +28,14 @@ function artcan_fontfolio_preprocess_html(&$vars) {
   // because it doesn't ccounts artcan_fontfolio's 'sidebar' region as sidebar.
   // So we first remove it.
   $vars['classes_array'] = array_diff($vars['classes_array'], array('no-sidebars'));
-  // And restore it if appropriate. 
+  // And restore it if appropriate.
   if ( empty($vars['page']['sidebar']) ) {
     $vars['classes_array'][] = 'no-sidebars';
   }
 
   $vars['path_to_artcan_fontfolio'] = drupal_get_path('theme', 'artcan_fontfolio');
   $vars['base_path'] = base_path();
-    
+
   // Attributes for html element.
   $vars['html_attributes_array'] = array(
     'lang' => $vars['language']->language,
@@ -48,7 +48,7 @@ function artcan_fontfolio_preprocess_html(&$vars) {
   if (is_null(drupal_get_http_header('X-UA-Compatible'))) {
     drupal_add_http_header('X-UA-Compatible', 'IE=edge,chrome=1');
   }
-   
+
   // We want to insert inline css rules based on fonfolio theme settings.
   $bg_color = check_plain(theme_get_setting('body_bg_color'));
   $data = 'body { background-color: ' . $bg_color . '}';
@@ -133,13 +133,14 @@ function artcan_fontfolio_preprocess_page(&$vars) {
       $default_lang_object = language_default();
       $default_lang = $default_lang_object->language;
       global $base_url;
+      $path_translations = translation_path_get_translations(current_path());
       foreach ($languages[1] as $language) {
         if ($vars['language']->language != $language->language) {
           if ($language->language == $default_lang) {
-            $href = $base_url . '/';
+            $href = $base_url . '/' . $path_translations[$language->language];
           }
           else {
-            $href = $base_url . '/' . $language->language;
+            $href = $base_url . '/' . $language->language . '/' . $path_translations[$language->language];
           }
           $vars['lang_links'][$language->language] = array(
             'href' => $href,
@@ -169,18 +170,18 @@ function artcan_fontfolio_preprocess_node(&$vars) {
     // 'post-box' class styles the smaller node boxes on typical artcan_fontfolio
     // teaser lists.
     $teaser_box_type = 'post-box';
-    
+
     // artcan_fontfolio has different way to style node teasers if presented as part
-    // of default blog teasers list. We recognize such list if its first URL 
+    // of default blog teasers list. We recognize such list if its first URL
     // parameter is "blog".
     // But we dont want to use this style if blog displayed at site frontpage.
     // So we set different class for Blog teaser.
     if (arg(0) == 'blog' && !($vars['is_front'])) {
       $teaser_box_type = 'blog-box';
     }
-    
+
     $vars['classes_array'][] = $vars['zebra'];
-    
+
     // Set first teaser node classes to allow the bigger dimentions for first teaser.
     if ($numbered == 1) {
       $vars['classes_array'][] = 'first';
