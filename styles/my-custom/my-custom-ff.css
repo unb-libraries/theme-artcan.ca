@@ -230,6 +230,13 @@ table.resources {
   font-style: italic;
 }
 
+.node-type-gallery-image a.gallery-return {
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
 /*Biographies*/
 
 .page-node-191 .view-artist-link-list, .page-node-191 .view-artist-bios p, .page-node-191 .view-artist-bios a, .page-node-193 .view-artist-link-list-french, .page-node-193 .view-artist-bios-french p, .page-node-193 .view-artist-bios-french a {

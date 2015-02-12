@@ -97,6 +97,14 @@
   <?php endif; ?>
 
   <div class="content"<?php print $content_attributes; ?>>
+    <?php
+      $gallery_tid = $content['field_gallery']['#items'][0]['taxonomy_term']->tid;
+      $gallery_name = taxonomy_term_load($gallery_tid)->name;
+      $gallery = taxonomy_term_load($gallery_tid);
+      $gallery_path = entity_uri('taxonomy_term', $gallery)['path'];
+      $gallery_path_alias = drupal_lookup_path('alias', $gallery_path);
+    ?>
+    <a href="<?php echo $gallery_path_alias; ?>" class="gallery-return">&lt;&lt; Return to <?php echo $gallery_name; ?></a>
     <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
     <div class="field field-type-text-long">
       <div class="field-items">
