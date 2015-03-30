@@ -202,9 +202,15 @@ table.resources {
   left: -99999px;
 }
 
-.node-type-gallery-image .field-name-field-bag-image img {
+.node-type-gallery-image div.photo {
   float: left;
   margin-bottom: 30px;
+  width: 550px;
+}
+
+.node-type-gallery-image div.photo p.terms {
+  font-size: 14px;
+  line-height: initial;
 }
 
 .node-type-gallery-image .field-label, .field-items, .field-item {
@@ -230,7 +236,7 @@ table.resources {
   font-style: italic;
 }
 
-.node-type-gallery-image a.gallery-return {
+.node-type-gallery-image div.gallery-return a {
   font-size: 15px;
   text-decoration: none;
   display: inline-block;

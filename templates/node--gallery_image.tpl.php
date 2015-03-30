@@ -98,14 +98,30 @@
 
   <div class="content"<?php print $content_attributes; ?>>
     <?php
+      if ($content['field_gallery']) {
       $gallery_tid = $content['field_gallery']['#items'][0]['taxonomy_term']->tid;
       $gallery_name = taxonomy_term_load($gallery_tid)->name;
       $gallery = taxonomy_term_load($gallery_tid);
       $gallery_path = entity_uri('taxonomy_term', $gallery)['path'];
       $gallery_path_alias = drupal_lookup_path('alias', $gallery_path);
     ?>
-    <a href="<?php echo $gallery_path_alias; ?>" class="gallery-return">&lt;&lt; Return to <?php echo $gallery_name; ?></a>
-    <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
+    <div class="gallery-return"><a href="<?php echo $gallery_path_alias; ?>">&lt;&lt; Return to <?php echo $gallery_name; ?></a></div>
+    <?php
+    }
+    ?>
+    <div class="photo">
+      <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
+      <p class="terms">Images, text, and all other content in ArtCan.ca are protected by Canadian and international copyright laws and are intended for non-commercial, educational, promotional and personal research use only. All other uses are expressly prohibited. Requests to reproduce the image on this page shoul$
+      <?php
+      if ($content['field_gallery']['#items'][0]['taxonomy_term']->name == 'UNB Art Centre') {
+        print 'The UNB Art Centre at (506) 453-4623';
+      }
+      elseif ($content['field_gallery']['#items'][0]['taxonomy_term']->name == 'Beaverbrook Art Gallery') {
+        print '<a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>';
+      }
+      ?>
+      .</p>
+    </div>
     <div class="field field-type-text-long">
       <div class="field-items">
         <div class="field-item even">
@@ -138,19 +154,45 @@
         </div>
       </div>
     </div>
+    <div class="field field-type-text-long">
+      <div class="field-items">
+        <div class="field-item even">
+          <p>
+            <?php
+            if ($content['field_artwork_title']) {
+              print $content['field_artwork_title']['#items'][0]['value'];
+            }
+            if ($content['field_year']) {
+              print ', ' . $content['field_year']['#items'][0]['value'];
+            }
+            ?>
+          </p>
+        </div>
+      </div>
+    </div>
     <?php
-      print render($content['field_artwork_title']);
-      print render($content['field_year']);
-      print render($content['field_artwork_type']);
-      print render($content['field_artwork_dimensions']);
-      print render($content['field_inscriptions']);
-      print render($content['field_photography_credit']);
-      print render($content['field_copyright_information']);
-      print render($content['field_gallery']);
-      print render($content['field_collection']);
-      print render($content['field_provenance']);
-      print render($content['field_accession_number']);
-    ?>
+      if ($content['field_artwork_type']) {
+        print render($content['field_artwork_type']);
+      }
+      if ($content['field_artwork_dimensions']) {
+        print render($content['field_artwork_dimensions']);
+      }
+      if ($content['field_inscriptions']) {
+        print render($content['field_inscriptions']);
+      }
+      if ($content['field_photography_credit']) {
+        print render($content['field_photography_credit']);
+      }
+      if ($content['field_collection']) {
+        print render($content['field_collection']);
+      }
+      if ($content['field_provenance']) {
+        print render($content['field_provenance']);
+      }
+      if ($content['field_accession_number']) {
+        print render($content['field_accession_number']);
+    }?>
+
     <?php
       $bio = $content['field_artist']['#items'][0]['taxonomy_term']->field_bio[$content['field_artist']['#language']][0]['value'];
       if ($bio):
