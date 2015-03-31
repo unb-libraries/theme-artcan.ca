@@ -119,8 +119,8 @@
       elseif ($content['field_gallery']['#items'][0]['taxonomy_term']->name == 'Beaverbrook Art Gallery') {
         print '<a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>';
       }
-      ?>
-      .</p>
+      ?>.
+      </p>
     </div>
     <div class="field field-type-text-long">
       <div class="field-items">
