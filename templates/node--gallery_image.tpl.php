@@ -160,7 +160,7 @@
           <p>
             <?php
             if ($content['field_artwork_title']) {
-              print $content['field_artwork_title']['#items'][0]['value'];
+              print '<em>' . $content['field_artwork_title']['#items'][0]['value'] . '</em>';
             }
             if ($content['field_year']) {
               print ', ' . $content['field_year']['#items'][0]['value'];
