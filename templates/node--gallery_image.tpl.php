@@ -111,15 +111,18 @@
     ?>
     <div class="photo">
       <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
-      <p class="terms">Images, text, and all other content in ArtCan.ca are protected by Canadian and international copyright laws and are intended for non-commercial, educational, promotional and personal research use only. All other uses are expressly prohibited. Requests to reproduce the image on this page should be referred to
-      <?php
-      if ($content['field_gallery']['#items'][0]['taxonomy_term']->name == 'UNB Art Centre') {
-        print 'The UNB Art Centre at (506) 453-4623';
-      }
-      elseif ($content['field_gallery']['#items'][0]['taxonomy_term']->name == 'Beaverbrook Art Gallery') {
-        print '<a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>';
-      }
-      ?>.
+      <p class="terms">
+        <?php
+        if ($node->language == 'en') {
+          $block = module_invoke('block', 'block_view', '3');
+        }
+        elseif ($node->language == 'fr') {
+          $block = module_invoke('block', 'block_view', '4');
+        }
+        if ($block) {
+          print $block['content'];
+        }
+        ?>
       </p>
     </div>
     <div class="field field-type-text-long">
