@@ -112,17 +112,21 @@
     <div class="photo">
       <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
       <p class="terms">
-        <?php
-        if ($node->language == 'en') {
-          $block = module_invoke('block', 'block_view', '3');
-        }
-        elseif ($node->language == 'fr') {
-          $block = module_invoke('block', 'block_view', '4');
-        }
-        if ($block) {
-          print $block['content'];
-        }
-        ?>
+        <?php if ($node->language == 'en'): ?>
+          Images, text, and all other content in ArtCan.ca are protected by Canadian and international copyright laws and are intended for non-commercial, educational, promotional and personal research use only. All other uses are expressly prohibited. Requests to reproduce the image on this page should be referred to
+          <?php if ($gallery_name == 'UNB Art Centre'): ?>
+            The UNB Art Centre at (506) 453-4623
+          <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
+            <a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>
+          <?php endif; ?>.
+        <?php elseif ($node->language == 'fr'): ?>
+          Les images, le texte et tout le contenu du site ArtCan.ca sont protégés par les lois canadiennes et internationales sur le droit d’auteur et ne doivent servir qu’à des fins non commerciales, éducationnelles ou promotionelles, ou encore à des fins de recherches personnelles. Tout autre usage est expressément interdit. La permission de reproduire l’image figurant sur cette page doit être adressée à
+          <?php if ($gallery_name == 'UNB Art Centre'): ?>
+            UNB Art Centre (506-453-4623)
+          <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
+            <a href="http://beaverbrookartgallery.org/fr/" target="_blank">la Galerie d’art Beaverbrook</a>
+          <?php endif; ?>.
+        <?php endif; ?>
       </p>
     </div>
     <div class="field field-type-text-long">
