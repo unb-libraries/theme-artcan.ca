@@ -2,7 +2,7 @@
 /**
  * @file
  * Contains theme override functions and preprocess functions
- * for artcan_fontfolio Drupal theme.
+ * for artcan_ca Drupal theme.
  */
 
 /**
@@ -11,7 +11,7 @@
  * Changes the default meta content-type tag to the shorter HTML5 version
  * This function copied as is from Boron theme
  */
-function artcan_fontfolio_html_head_alter(&$head_elements) {
+function artcan_ca_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
     'charset' => 'utf-8'
   );
@@ -23,9 +23,9 @@ function artcan_fontfolio_html_head_alter(&$head_elements) {
  * @param $vars
  *   An array of variables to pass to the theme template.
  */
-function artcan_fontfolio_preprocess_html(&$vars) {
+function artcan_ca_preprocess_html(&$vars) {
   // We want to use core's body class 'no-sidebars' but is useless for us
-  // because it doesn't ccounts artcan_fontfolio's 'sidebar' region as sidebar.
+  // because it doesn't ccounts artcan_ca's 'sidebar' region as sidebar.
   // So we first remove it.
   $vars['classes_array'] = array_diff($vars['classes_array'], array('no-sidebars'));
   // And restore it if appropriate.
@@ -33,7 +33,7 @@ function artcan_fontfolio_preprocess_html(&$vars) {
     $vars['classes_array'][] = 'no-sidebars';
   }
 
-  $vars['path_to_artcan_fontfolio'] = drupal_get_path('theme', 'artcan_fontfolio');
+  $vars['path_to_artcan_fontfolio'] = drupal_get_path('theme', 'artcan_ca');
   $vars['base_path'] = base_path();
 
   // Attributes for html element.
@@ -64,7 +64,7 @@ function artcan_fontfolio_preprocess_html(&$vars) {
  * @param $hook
  *   The name of the template being rendered ("html" in this case.)
  */
-function artcan_fontfolio_process_html(&$vars, $hook) {
+function artcan_ca_process_html(&$vars, $hook) {
   // Flatten out html_attributes.
   $vars['html_attributes'] = drupal_attributes($vars['html_attributes_array']);
 }
@@ -72,7 +72,7 @@ function artcan_fontfolio_process_html(&$vars, $hook) {
 /**
  * Override or insert vars in the html_tag theme function.
  */
-function artcan_fontfolio_process_html_tag(&$vars) {
+function artcan_ca_process_html_tag(&$vars) {
   $tag = &$vars['element'];
 
   if ($tag['#tag'] == 'style' || $tag['#tag'] == 'script') {
@@ -90,7 +90,7 @@ function artcan_fontfolio_process_html_tag(&$vars) {
  * Override or insert vars into the page template.
 
  */
-function artcan_fontfolio_preprocess_page(&$vars) {
+function artcan_ca_preprocess_page(&$vars) {
 
   // Create variables according to theme settings information.
   $social['facebook'] = theme_get_setting('facebook');
@@ -103,7 +103,7 @@ function artcan_fontfolio_preprocess_page(&$vars) {
   $options['html'] = TRUE;
   foreach ($social as $key => $value) {
     if ($value != '') {
-      $imgvars['path'] = drupal_get_path('theme', 'artcan_fontfolio') . '/styles/images/' . $key . '-icon.png';
+      $imgvars['path'] = drupal_get_path('theme', 'artcan_ca') . '/styles/images/' . $key . '-icon.png';
       $imgvars['attributes']['class'] = array($key);
       if ($key == 'plus') {
         $key = 'Google+';
@@ -157,7 +157,7 @@ function artcan_fontfolio_preprocess_page(&$vars) {
 /**
  * Override or insert vars into the node template.
  */
-function artcan_fontfolio_preprocess_node(&$vars) {
+function artcan_ca_preprocess_node(&$vars) {
   if ($vars['view_mode'] == 'full' && node_is_page($vars['node'])) {
     // @TODOS: see if needed.
     $vars['classes_array'][] = 'node-full';
@@ -167,11 +167,11 @@ function artcan_fontfolio_preprocess_node(&$vars) {
     // So we count the nodes for each teasers page request.
     static $numbered = 1;
     // Initialize default fonfolio node teaser class to 'post-box'.
-    // 'post-box' class styles the smaller node boxes on typical artcan_fontfolio
+    // 'post-box' class styles the smaller node boxes on typical artcan_ca
     // teaser lists.
     $teaser_box_type = 'post-box';
 
-    // artcan_fontfolio has different way to style node teasers if presented as part
+    // artcan_ca has different way to style node teasers if presented as part
     // of default blog teasers list. We recognize such list if its first URL
     // parameter is "blog".
     // But we dont want to use this style if blog displayed at site frontpage.
@@ -198,7 +198,7 @@ function artcan_fontfolio_preprocess_node(&$vars) {
 /**
  * Override or insert vars into the block template.
  */
-function artcan_fontfolio_preprocess_block(&$vars) {
+function artcan_ca_preprocess_block(&$vars) {
 
   // On sidebar block insert 'side-box' class.
   if ($vars['elements']['#block']->region == 'sidebar') {
@@ -209,7 +209,7 @@ function artcan_fontfolio_preprocess_block(&$vars) {
 /**
  * Implements hook_form_FORM_ID_alter.
  */
-function artcan_fontfolio_form_search_block_form_alter(&$form, &$form_state, $form_id) {
+function artcan_ca_form_search_block_form_alter(&$form, &$form_state, $form_id) {
   // Change the text on the label element.
   $form['search_block_form']['#title'] = t('Search');
   // Toggle label visibilty.
@@ -229,7 +229,7 @@ function artcan_fontfolio_form_search_block_form_alter(&$form, &$form_state, $fo
 /**
  * Overrides core theme_pager function to manipulate pager classes
  */
-function artcan_fontfolio_pager($vars) {
+function artcan_ca_pager($vars) {
   $tags = $vars['tags'];
   $element = $vars['element'];
   $parameters = $vars['parameters'];
@@ -365,10 +365,10 @@ function artcan_fontfolio_pager($vars) {
 }
 
 /**
- * Overrides core theme_feed_icon() to call artcan_fontfolio custom feed icon
+ * Overrides core theme_feed_icon() to call artcan_ca custom feed icon
  */
-function artcan_fontfolio_feed_icon($vars) {
-  $path = drupal_get_path('theme', 'artcan_fontfolio') . '/styles/images/feed.png';
+function artcan_ca_feed_icon($vars) {
+  $path = drupal_get_path('theme', 'artcan_ca') . '/styles/images/feed.png';
   $text = t('Subscribe to @feed-title', array('@feed-title' => $vars['title']));
   if ($image = theme('image', array(
       'path' => $path,
