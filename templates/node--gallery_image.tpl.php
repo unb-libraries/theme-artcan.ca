@@ -79,145 +79,189 @@
  */
 
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
-  <?php if (!$page): ?>
-    <header>
-      <?php print render($title_prefix); ?>
-      <h3<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
-      <?php print render($title_suffix); ?>
-      <?php /*
-        if ($display_submitted): ?>
-          <div class="submitted">
-            <?php print $submitted; ?>
+<?php if ($teaser): ?>
+  <?php
+    $tid = $field_artist['und'][0]['tid'];
+    $term = taxonomy_term_load($tid);
+    $first_name = $term->field_first_name['und'][0]['safe_value'];
+    $last_name = $term->field_last_name['und'][0]['safe_value'];
+    $year  = $field_year['und'][0]['safe_value'] ? $field_year['und'][0]['safe_value'] : '';
+    $img_uri = $field_bag_image['und'][0]['uri'];
+  ?>
+  <div class="views-field views-field-path">
+    <span class="field-content">
+      <a href="<?php print $node_url; ?>">
+        <div class="views-field views-field-field-bag-image">
+          <div class="field-content">
+            <?php print theme_image_style(array('style_name' => 'gallery_thumbnail', 'path' => $img_uri)); ?>
           </div>
-        <?php endif;
-            */?>
-    </header>
-  <?php endif; ?>
-
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      if ($content['field_gallery']) {
-      $gallery_tid = $content['field_gallery']['#items'][0]['taxonomy_term']->tid;
-      $gallery_name = taxonomy_term_load($gallery_tid)->name;
-      $gallery = taxonomy_term_load($gallery_tid);
-      $gallery_path = entity_uri('taxonomy_term', $gallery)['path'];
-      $gallery_path_alias = drupal_lookup_path('alias', $gallery_path);
-    ?>
-    <div class="gallery-return"><a href="<?php echo $gallery_path_alias; ?>">&lt;&lt; Return to <?php echo $gallery_name; ?></a></div>
-    <?php
-    }
-    ?>
-    <div class="photo">
-      <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
-      <p class="terms">
-        <?php if ($node->language == 'en'): ?>
-          Images, text, and all other content in ArtCan.ca are protected by Canadian and international copyright laws and are intended for non-commercial, educational, promotional and personal research use only. All other uses are expressly prohibited. Requests to reproduce the image on this page should be referred to
-          <?php if ($gallery_name == 'UNB Art Centre'): ?>
-            The UNB Art Centre at (506) 453-4623.
-          <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
-            <a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>.
-          <?php endif; ?>
-        <?php elseif ($node->language == 'fr'): ?>
-          Les images, le texte et tout le contenu du site ArtCan.ca sont protégés par les lois canadiennes et internationales sur le droit d’auteur et ne doivent servir qu’à des fins non commerciales, éducationnelles ou promotionelles, ou encore à des fins de recherches personnelles. Tout autre usage est expressément interdit. La permission de reproduire l’image figurant sur cette page doit être adressée à
-          <?php if ($gallery_name == 'UNB Art Centre'): ?>
-            UNB Art Centre (506-453-4623).
-          <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
-            <a href="http://beaverbrookartgallery.org/fr/" target="_blank">la Galerie d’art Beaverbrook</a>.
-          <?php endif; ?>
+        </div>
+        <div class="views-field views-field-title"><em class="field-content"><?php print $title ?></em></div>
+        <div class="views-field views-field-field-artist-last-first-">
+          <div class="field-content">
+          <?php
+            if ($last_name != '') {
+              print $last_name . ', ';
+            }
+            print $first_name;
+          ?>
+          </div>
+        </div>
+        <?php if ($year != ''): ?>
+        <div class="views-field views-field-field-year">
+          <div class="field-content"><?php print $year ?></div>
+        </div>
         <?php endif; ?>
-      </p>
-    </div>
-    <div class="field field-type-text-long">
-      <div class="field-items">
-        <div class="field-item even">
-          <p>
-            <?php
-              $first_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_first_name[$content['field_artist']['#language']][0]['value'];
-              $last_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_last_name[$content['field_artist']['#language']][0]['value'];
-              $tid = $content['field_artist']['#items'][0]['taxonomy_term']->tid;
-            ?>
-            <?php print $first_name . " " . $last_name; ?>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="field field-type-text-long">
-      <div class="field-items">
-        <div class="field-item even">
-          <p>
-            <?php print $content['field_artist']['#items'][0]['taxonomy_term']->field_nationality[$content['field_artist']['#language']][0]['value']; ?>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="field field-type-text-long">
-      <div class="field-items">
-        <div class="field-item even">
-          <p>
-            <?php print $content['field_artist']['#items'][0]['taxonomy_term']->field_life_range[$content['field_artist']['#language']][0]['value']; ?>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="field field-type-text-long">
-      <div class="field-items">
-        <div class="field-item even">
-          <p>
-            <?php
-            if ($content['field_artwork_title']) {
-              print '<em>' . $content['field_artwork_title']['#items'][0]['value'] . '</em>';
-            }
-            if ($content['field_year']) {
-              print ', ' . $content['field_year']['#items'][0]['value'];
-            }
-            ?>
-          </p>
-        </div>
-      </div>
-    </div>
-    <?php
-      if ($content['field_artwork_type']) {
-        print render($content['field_artwork_type']);
-      }
-      if ($content['field_artwork_dimensions']) {
-        print render($content['field_artwork_dimensions']);
-      }
-      if ($content['field_inscriptions']) {
-        print render($content['field_inscriptions']);
-      }
-      if ($content['field_photography_credit']) {
-        print render($content['field_photography_credit']);
-      }
-      if ($content['field_collection']) {
-        print render($content['field_collection']);
-      }
-      if ($content['field_provenance']) {
-        print render($content['field_provenance']);
-      }
-      if ($content['field_accession_number']) {
-        print render($content['field_accession_number']);
-    }?>
-
-    <?php
-      $bio = $content['field_artist']['#items'][0]['taxonomy_term']->field_bio[$content['field_artist']['#language']][0]['value'];
-      if ($bio):
-    ?>
-    <p class=bio-link>(<a href="biographies/#<?php print $tid; ?>"><?php print t('Biography of'); ?> <?php print $first_name . " " . $last_name; ?></a>)</p>
-    <?php endif; ?>
-    <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['links']);
-      // print render($content);
-    ?>
+      </a>
+    </span>
   </div>
-  <?php if ($page): ?>
-    <footer>
-      <?php print render($content['links']); ?>
-      <?php print render($content['comments']); ?>
-    </footer>
-  <?php endif; ?>
+<?php else: ?>
+  <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
-</article>
+    <?php if (!$page): ?>
+      <header>
+        <?php print render($title_prefix); ?>
+        <h3<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
+        <?php print render($title_suffix); ?>
+        <?php /*
+          if ($display_submitted): ?>
+            <div class="submitted">
+              <?php print $submitted; ?>
+            </div>
+          <?php endif;
+              */?>
+      </header>
+    <?php endif; ?>
+
+    <div class="content"<?php print $content_attributes; ?>>
+      <?php
+        if ($content['field_gallery']) {
+        $gallery_tid = $content['field_gallery']['#items'][0]['taxonomy_term']->tid;
+        $gallery_name = taxonomy_term_load($gallery_tid)->name;
+        $gallery = taxonomy_term_load($gallery_tid);
+        $gallery_path = entity_uri('taxonomy_term', $gallery)['path'];
+        $gallery_path_alias = drupal_lookup_path('alias', $gallery_path);
+      ?>
+      <div class="gallery-return"><a href="<?php echo $gallery_path_alias; ?>">&lt;&lt; Return to <?php echo $gallery_name; ?></a></div>
+      <?php
+      }
+      ?>
+      <div class="photo">
+        <a href="<?php print file_create_url($content['field_bag_image']['#items'][0]['uri']); ?>" target="_blank"><?php print render($content['field_bag_image']); ?></a>
+        <p class="terms">
+          <?php if ($node->language == 'en'): ?>
+            Images, text, and all other content in ArtCan.ca are protected by Canadian and international copyright laws and are intended for non-commercial, educational, promotional and personal research use only. All other uses are expressly prohibited. Requests to reproduce the image on this page should be referred to
+            <?php if ($gallery_name == 'UNB Art Centre'): ?>
+              The UNB Art Centre at (506) 453-4623.
+            <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
+              <a href="http://beaverbrookartgallery.org/en/" target="_blank">The Beaverbrook Art Gallery</a>.
+            <?php endif; ?>
+          <?php elseif ($node->language == 'fr'): ?>
+            Les images, le texte et tout le contenu du site ArtCan.ca sont protégés par les lois canadiennes et internationales sur le droit d’auteur et ne doivent servir qu’à des fins non commerciales, éducationnelles ou promotionelles, ou encore à des fins de recherches personnelles. Tout autre usage est expressément interdit. La permission de reproduire l’image figurant sur cette page doit être adressée à
+            <?php if ($gallery_name == 'UNB Art Centre'): ?>
+              UNB Art Centre (506-453-4623).
+            <?php elseif ($gallery_name == 'Beaverbrook Art Gallery'): ?>
+              <a href="http://beaverbrookartgallery.org/fr/" target="_blank">la Galerie d’art Beaverbrook</a>.
+            <?php endif; ?>
+          <?php endif; ?>
+        </p>
+      </div>
+      <div class="field field-type-text-long">
+        <div class="field-items">
+          <div class="field-item even">
+            <p>
+              <?php
+                $first_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_first_name[$content['field_artist']['#language']][0]['value'];
+                $last_name = $content['field_artist']['#items'][0]['taxonomy_term']->field_last_name[$content['field_artist']['#language']][0]['value'];
+                $tid = $content['field_artist']['#items'][0]['taxonomy_term']->tid;
+              ?>
+              <?php
+                print $first_name;
+                if ($last_name != '') {
+                  print ' ' . $last_name;
+                }
+              ?>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field field-type-text-long">
+        <div class="field-items">
+          <div class="field-item even">
+            <p>
+              <?php print $content['field_artist']['#items'][0]['taxonomy_term']->field_nationality[$content['field_artist']['#language']][0]['value']; ?>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field field-type-text-long">
+        <div class="field-items">
+          <div class="field-item even">
+            <p>
+              <?php print $content['field_artist']['#items'][0]['taxonomy_term']->field_life_range[$content['field_artist']['#language']][0]['value']; ?>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field field-type-text-long">
+        <div class="field-items">
+          <div class="field-item even">
+            <p>
+              <?php
+              if ($content['field_artwork_title']) {
+                print '<em>' . $content['field_artwork_title']['#items'][0]['value'] . '</em>';
+              }
+              if ($content['field_year']) {
+                print ', ' . $content['field_year']['#items'][0]['value'];
+              }
+              ?>
+            </p>
+          </div>
+        </div>
+      </div>
+      <?php
+        if ($content['field_artwork_type']) {
+          print render($content['field_artwork_type']);
+        }
+        if ($content['field_artwork_dimensions']) {
+          print render($content['field_artwork_dimensions']);
+        }
+        if ($content['field_inscriptions']) {
+          print render($content['field_inscriptions']);
+        }
+        if ($content['field_photography_credit']) {
+          print render($content['field_photography_credit']);
+        }
+        if ($content['field_collection']) {
+          print render($content['field_collection']);
+        }
+        if ($content['field_provenance']) {
+          print render($content['field_provenance']);
+        }
+        if ($content['field_accession_number']) {
+          print render($content['field_accession_number']);
+      }?>
+
+      <?php
+        $bio = $content['field_artist']['#items'][0]['taxonomy_term']->field_bio[$content['field_artist']['#language']][0]['value'];
+        if ($bio):
+      ?>
+      <p class=bio-link>(<a href="biographies/#<?php print $tid; ?>"><?php print t('Biography of'); ?> <?php print $first_name . " " . $last_name; ?></a>)</p>
+      <?php endif; ?>
+      <?php
+        // We hide the comments and links now so that we can render them later.
+        hide($content['comments']);
+        hide($content['links']);
+        // print render($content);
+      ?>
+    </div>
+    <?php if ($page): ?>
+      <footer>
+        <?php print render($content['links']); ?>
+        <?php print render($content['comments']); ?>
+      </footer>
+    <?php endif; ?>
+
+  </article>
+<?php endif; ?>
